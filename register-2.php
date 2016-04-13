@@ -37,7 +37,7 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
 <div class="container">
     <div class="col-lg-12 well">
         <form name="registerform2" id="registerform2" method="post" action="register-3.php">
-            
+
             <div class="row">
                 <?php //This
                 require 'fixpost.php';
@@ -53,7 +53,7 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
                 <br><br>
             </div>
 
-            
+
             กรุณากรอกประวัติการศึกษาสูงสุดของคุณ
             <br><br>
 
@@ -84,44 +84,44 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
                 <option value="doctor" <?= $edu_level == "doctor" ? "selected" : "" ?>>ปริญญาเอก</option>
             </select>
             <br><br>
-                  
+
             ประเทศที่จบ : <input name="country_grad" type="text" value="<?= $country_grad ?>">
             <br><br>
-            
+
             สถาบัน : <input name="university" type="text" value="<?= $university ?>">
             <br><br>
-            
+
             คณะ : <input name="faculty" type="text" value="<?= $faculty ?>">
             <br><br>
-            
+
             สาขา : <input name="major" type="text" value="<?= $major ?>">
             <br><br>
-            
+
             ปีพ.ศ.ที่จบการศึกษา : <input name="year_grad" type="text" value="<?= $year_grad ?>"
                                          data-validation="required number length"
                                          data-validation-length="4" placeholder="2511"
                                          data-validation-error-msg="กรุณากรอกปีที่จบ">
             <br><br>
-            
+
             คะแนนเฉลี่ย(GPA) : <input name="GPA" type="text" value="<?= $GPA ?>"
                                       data-validation="required number length" placeholder="4.00">
             <br><br>
-            
+
             รางวัล/ความสำเร็จ/เกียรตินิยม : <input name="honor" type="text" value="<?= $honor ?>">
             <br><br>
-            
+
             ทักษะด้านภาษา : <input name="language" type="text" value="<?= $language ?>">
             <br><br>
-            
+
             รางวัล/ความสำเร็จ/เกียรตินิยม : <input name="experience" type="text" value="<?= $experience ?>">
             <br><br>
-            
+
             <br>
-            
+
             <!--<a href="register-3.php"><button value="submit" type="submit">ถัดไป</button></a>-->
             <input form="registerform2" value="ถัดไป" type="submit">
-        
-        
+
+
         </form>
     </div>
 </div>

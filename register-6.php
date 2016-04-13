@@ -24,7 +24,7 @@ if (!$_SESSION["register"]) {
     <div class="col-lg-12 well">
         <form name="registerform6" id="registerform6" enctype="multipart/form-data" method="post"
               action="registration-disabled-success.php">
-            
+
             <div class="row">
                 <?php //This
                 require 'fixpost.php';
@@ -45,16 +45,16 @@ if (!$_SESSION["register"]) {
                                             data-validation-allowing="jpg, jpeg, png, gif"
                                             data-validation-error-msg="กรุณาใสรูปถ่าย">
             <br><br>
-           
+
             รูปถ่ายเต็มตัว : <input id="body" name="body" type="file" data-validation="size mime"
                                     data-validation-max-size="3M"
                                     data-validation-allowing="jpg, jpeg, png, gif"
                                     data-validation-error-msg="กรุณาใส่รูปถ่าย">
             <br><br>
-                       
+
             <input type="submit" value="บันทึก" name="submit">
-            
-            
+
+
         </form>
     </div>
 </div>

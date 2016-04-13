@@ -7,7 +7,7 @@ include 'imageupload.php';
 
 //save to database
 $db = new MongoDB\Client();
-$collection = $db->mydb->DisData->disable_people;
+$collection = $db->mydb->disable_people;
 
 $result = $collection->insertOne($_SESSION["register"]);
 

@@ -29,7 +29,7 @@ $period = (!$_SESSION["register"]["period"]) ? "" : $_SESSION["register"]["perio
 <div class="container">
     <div class="col-lg-12 well">
         <form name="registerform3" id="registerform3" method="post" action="register-4.php">
-           
+
             <div class="row">
                 <?php //This
                 require 'fixpost.php';
@@ -50,27 +50,27 @@ $period = (!$_SESSION["register"]["period"]) ? "" : $_SESSION["register"]["perio
             มี &nbsp;&nbsp;&nbsp;<input
                 name="experience" type="radio" value="0" <?= $experience == "1" ? checked : "" ?>> ไม่มี
             <br><br>
-            
+
             (ถ้ามี)
             <br><br>
-            
+
             องค์กร/บริษัทที่เคยทำงาน : <input name="company_name" type="text" value="<?= $company_name ?>">
             <br><br>
-            
+
             ตำแหน่ง : <input name="position" type="text" value="<?= $position ?>">
             <br><br>
-            
+
             ระยะเวลาที่ทำงาน : &nbsp;&nbsp;&nbsp; เริ่มต้น <input name="period" type="date"
                                                                   value="<?= $period ?>"> &nbsp;&nbsp;&nbsp;สิ้นสุด
             <input name="" type="date">
-            
+
             <br><br>
             <br>
-            
+
             <!--<a href="register-4.php"><button type="submit">ถัดไป</button></a>-->
             <input form="registerform3" value="ถัดไป" type="submit">
-        
-        
+
+
         </form>
     </div>
 </div>

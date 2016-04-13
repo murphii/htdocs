@@ -111,10 +111,10 @@ $workingprovince = (!$_SESSION["register"]["workingprovince"]) ? "" : $_SESSION[
 
             จังหวัดที่ต้องการทำงาน : <input name="workingprovince" type="text" value="<?= $workingprovince ?>">
             <br><br>
-  
+
             <br>
-            
-                <input form="registerform4" value="ถัดไป" type="submit">
+
+            <input form="registerform4" value="ถัดไป" type="submit">
 
         </form>
     </div>

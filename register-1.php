@@ -33,7 +33,7 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
 <div class="container">
     <div class="col-lg-12 well">
         <form name="registerform1" id="registerform1" method="post" action="register-2.php">
-            
+
             <div class="row">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="register-1.php">ข้อมูลส่วนตัว</a></li>
@@ -46,7 +46,7 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
                 <br><br>
             </div>
 
-            
+
             คำนำหน้าชื่อ :
             <select name="name_title" form="registerform1" selected="<?= $name_title ?>"
                     data-validation="required" data-validation-error-msg="กรุณาเลือกคำนำหน้าชื่อ">
@@ -116,7 +116,7 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
             <!--<a href="save-1.php"><button type="submit">ถัดไป</button></a>-->
             <input form="registerform1" value="ถัดไป" type="submit">
 
-            
+
         </form>
     </div>
 </div>
