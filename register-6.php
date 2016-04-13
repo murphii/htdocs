@@ -22,44 +22,48 @@ if (!$_SESSION["register"]) {
 <br>
 <div class="container">
     <div class="col-lg-12 well">
-        <div class="row">
-            <?php //This
-            require 'fixpost.php';
-            ?>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="register-1.php">ข้อมูลส่วนตัว</a></li>
-                <li role="presentation"><a href="register-2.php">ประวัติการศึกษา</a></li>
-                <li role="presentation"><a href="register-3.php">ประวัติการทำงาน</a></li>
-                <li role="presentation"><a href="register-4.php">สายอาชีพที่ต้องการ</a></li>
-                <li role="presentation"><a href="register-5.php">ความพิการและอุปกรณ์</a></li>
-                <li role="presentation" class="active"><a href="register-6.php">รูปถ่าย</a></li>
-            </ul>
-            <br><br>
-            <div class="col-sm-7 form-group">
-                <form name="registerform6" id="registerform6" enctype="multipart/form-data" method="post"
-                      action="registration-disabled-success.php">
-                    รูปถ่ายหน้าตรงครึ่งตัว : <input id="face" name="face" type="file" data-validation="size mime"
-                                                    data-validation-max-size="3M"
-                                                    data-validation-allowing="jpg, jpeg, png, gif"
-                                                    data-validation-error-msg="ได้โปรด">
-                    <br><br>
-                    รูปถ่ายเต็มตัว : <input id="body" name="body" type="file" data-validation="size mime"
+        <form name="registerform6" id="registerform6" enctype="multipart/form-data" method="post"
+              action="registration-disabled-success.php">
+            
+            <div class="row">
+                <?php //This
+                require 'fixpost.php';
+                ?>
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a href="register-1.php">ข้อมูลส่วนตัว</a></li>
+                    <li role="presentation"><a href="register-2.php">ประวัติการศึกษา</a></li>
+                    <li role="presentation"><a href="register-3.php">ประวัติการทำงาน</a></li>
+                    <li role="presentation"><a href="register-4.php">สายอาชีพที่ต้องการ</a></li>
+                    <li role="presentation"><a href="register-5.php">ความพิการและอุปกรณ์</a></li>
+                    <li role="presentation" class="active"><a href="register-6.php">รูปถ่าย</a></li>
+                </ul>
+                <br><br>
+            </div>
+
+            รูปถ่ายหน้าตรงครึ่งตัว : <input id="face" name="face" type="file" data-validation="size mime"
                                             data-validation-max-size="3M"
                                             data-validation-allowing="jpg, jpeg, png, gif"
-                                            data-validation-error-msg="ได้โปรด">
-                    <br><br>
-                    <input type="submit" value="บันทึก" name="submit">
-                </form>
-            </div>
-            <br><br><br><br><br>
-
-        </div>
+                                            data-validation-error-msg="กรุณาใสรูปถ่าย">
+            <br><br>
+           
+            รูปถ่ายเต็มตัว : <input id="body" name="body" type="file" data-validation="size mime"
+                                    data-validation-max-size="3M"
+                                    data-validation-allowing="jpg, jpeg, png, gif"
+                                    data-validation-error-msg="กรุณาใส่รูปถ่าย">
+            <br><br>
+                       
+            <input type="submit" value="บันทึก" name="submit">
+            
+            
+        </form>
     </div>
 </div>
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery.form-validator.min.js"></script>
 <script>
     $.validate();
 </script>
+
 </body>
 </html>

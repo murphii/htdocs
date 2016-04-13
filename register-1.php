@@ -33,6 +33,7 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
 <div class="container">
     <div class="col-lg-12 well">
         <form name="registerform1" id="registerform1" method="post" action="register-2.php">
+            
             <div class="row">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="register-1.php">ข้อมูลส่วนตัว</a></li>
@@ -43,87 +44,88 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
                     <li role="presentation"><a href="register-6.php">รูปถ่าย</a></li>
                 </ul>
                 <br><br>
-                </div>
-
-                    คำนำหน้าชื่อ :
-                    <select name="name_title" form="registerform1" selected="<?= $name_title ?>"
-                            data-validation="required" data-validation-error-msg="ได้โปรด">
-                        <option value="null" <?= !$name_title ? "selected disabled" : "disabled" ?>>เลือกคำนำหน้าชื่อ
-                        </option>
-                        <option value="Mr" <?= $name_title == "Mr" ? "selected" : "" ?>>นาย</option>
-                        <option value="Ms" <?= $name_title == "Ms" ? "selected" : "" ?>>นางสาว</option>
-                        <option value="Mrs" <?= $name_title == "Mrs" ? "selected" : "" ?>>นาง</option>
-                    </select>
-
-
-                <br><br>
-
-                    ชื่อ : <input name="name" type="text" value="<?= $name ?>"
-                                  data-validation="required" data-validation-error-msg="ได้โปรด">
-
-                <br><br>
-
-                    นามสกุล : <input name="surname" type="text" value="<?= $surname ?>"
-                                     data-validation="required" data-validation-error-msg="ได้โปรด">
-
-                <br><br>
-
-                    อีเมล์ : <input name="email" type="email" value="<?= $email ?>" data-validation="email required"
-                                    data-validation-error-msg="ได้โปรด">
-
-                <br><br>
-
-                    รหัสผ่าน : <input name="password_confirmation" type="password" value="<?= $name ?>"
-                                      data-validation="length required" data-validation-error-msg="ได้โปรด"
-                                      data-validation-length="6-50">
-                <br><br>
-
-                    ยืนยันรหัสผ่าน : <input name="password" type="password" value="<?= $name ?>"
-                                            data-validation="confirmation" data-validation-error-msg="ได้โปรด">
-
-                <br><br>
-
-                    วัน/เดือน/ปีเกิด : <input name="birthday" type="date" value="<?= $birthday ?>"
-                                              data-validation="required date" data-validation-format="dd/mm/yyyy"
-                                              data-validation-error-msg="ได้โปรด" placeholder="dd/mm/yyyy">
-                    <br><br>
-
-
-                    เลขบัตรประจำตัวประชาชน : <input name="personalnumber" type="text" value="<?= $personalnumber ?>"
-                                                    data-validation="required number length"
-                                                    data-validation-length="13" data-validation-error-msg="ได้โปรด">
-                    <br><br>
-
-
-                    เบอร์โทร : <input name="tel" type="tel" value="<?= $tel ?>"
-                                      data-validation="required length number" data-validation-length="9-10"
-                                      data-validation-error-msg="ได้โปรด">
-                    <br><br>
-
-
-                    ที่อยู่ : <input name="address" type="text" value="<?= $address ?>">
-                    <br><br>
-
-
-                    จังหวัด : <input name="province" type="text" value="<?= $province ?>"
-                                     data-validation="required" data-validation-error-msg="ได้โปรด">
-                    <br><br>
-
-                <br>
-
-                    <!--<a href="save-1.php"><button type="submit">ถัดไป</button></a>-->
-                    <input form="registerform1" value="ถัดไป" type="submit">
-
-
             </div>
 
+            
+            คำนำหน้าชื่อ :
+            <select name="name_title" form="registerform1" selected="<?= $name_title ?>"
+                    data-validation="required" data-validation-error-msg="กรุณาเลือกคำนำหน้าชื่อ">
+                <option value="null" <?= !$name_title ? "selected disabled" : "disabled" ?>>เลือกคำนำหน้าชื่อ
+                </option>
+                <option value="Mr" <?= $name_title == "Mr" ? "selected" : "" ?>>นาย</option>
+                <option value="Ms" <?= $name_title == "Ms" ? "selected" : "" ?>>นางสาว</option>
+                <option value="Mrs" <?= $name_title == "Mrs" ? "selected" : "" ?>>นาง</option>
+            </select>
+
+
+            <br><br>
+
+            ชื่อ : <input name="name" type="text" value="<?= $name ?>"
+                          data-validation="required" data-validation-error-msg="กรุณากรอกชื่อ">
+
+            <br><br>
+
+            นามสกุล : <input name="surname" type="text" value="<?= $surname ?>"
+                             data-validation="required" data-validation-error-msg="กรุณากรอกนามสกุล">
+
+            <br><br>
+
+            อีเมล์ : <input name="email" type="email" value="<?= $email ?>" data-validation="email required"
+                            data-validation-error-msg="กรุณากรอกอีเมล์" placeholder="wansiri@example.com">
+
+            <br><br>
+
+            รหัสผ่าน : <input name="password_confirmation" type="password" value="<?= $name ?>"
+                              data-validation="length required" data-validation-error-msg="โปรดระบุรหัสผ่าน"
+                              data-validation-length="6-50">
+            <br><br>
+
+            ยืนยันรหัสผ่าน : <input name="password" type="password" value="<?= $name ?>"
+                                    data-validation="confirmation" data-validation-error-msg="รหัสผ่านไม่ตรงกัน">
+
+            <br><br>
+
+            วัน/เดือน/ปีเกิด : <input name="birthday" type="date" value="<?= $birthday ?>"
+                                      data-validation="required date" data-validation-format="dd/mm/yyyy"
+                                      data-validation-error-msg="กรุณากรอกวัน/เดือน/ปีเกิด" placeholder="dd/mm/yyyy">
+            <br><br>
+
+
+            เลขบัตรประจำตัวประชาชน : <input name="personalnumber" type="text" value="<?= $personalnumber ?>"
+                                            data-validation="required number length"
+                                            data-validation-length="13"
+                                            data-validation-error-msg="กรุณากรอกเลขประจำตัวประชาชน">
+            <br><br>
+
+
+            เบอร์โทร : <input name="tel" type="tel" value="<?= $tel ?>"
+                              data-validation="required length number" data-validation-length="9-10"
+                              data-validation-error-msg="กรุณากรอกเบอร์โทรศัพท์">
+            <br><br>
+
+
+            ที่อยู่ : <input name="address" type="text" value="<?= $address ?>">
+            <br><br>
+
+
+            จังหวัด : <input name="province" type="text" value="<?= $province ?>"
+                             data-validation="required" data-validation-error-msg="กรุณากรอกจังหวัดที่คุณอยู่">
+            <br><br>
+            <br>
+
+            <!--<a href="save-1.php"><button type="submit">ถัดไป</button></a>-->
+            <input form="registerform1" value="ถัดไป" type="submit">
+
+            
         </form>
     </div>
 </div>
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery.form-validator.min.js"></script>
 <script>
     $.validate();
 </script>
+
 </body>
 </html>

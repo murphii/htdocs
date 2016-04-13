@@ -1,13 +1,13 @@
 <?php
 session_start();
 require "fixpost.php";
-require "bower_components/holderjs/vendor/autoload.php";
+require "vendor/autoload.php";
 
 include 'imageupload.php';
 
 //save to database
 $db = new MongoDB\Client();
-$collection = $db->mydb->dis;
+$collection = $db->mydb->DisData->disable_people;
 
 $result = $collection->insertOne($_SESSION["register"]);
 
