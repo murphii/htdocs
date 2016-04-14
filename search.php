@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -32,13 +33,7 @@
 
 </head>
 <SCRIPT Language="JavaScript">
-<!-- hide from old browsers
-function Linkup()
-{
-var number = document.DD.DDM.selectedIndex;
-location.href = document.DD.DDM.options[number].value;
-}
-//-->
+
 </SCRIPT> 
 <body>
 
@@ -50,72 +45,75 @@ location.href = document.DD.DDM.options[number].value;
     <a name="about"></a>
     <div class="intro-header">
         <div class="container">
-			<form name="DD">
+			<form name="DD" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 						<br>
 			<h1>ค้นหางานที่คุณต้องการ</h1>
 						<br>
 						<br>
 							<div class="form-group">
 						<label for="inputFirstname" class="col-sm-4 control-label"><h4>เลือกประเภทความพิการ </h4></label>
-						<div class="btn-group" role="group" aria-label="..."><select class="form-control">
-						<option>เลือกประเภทความพิการ</option>
-                        <option >พิการทางการเห็น</option>
-                      	<option >พิการทางการได้ยินหรือสื่อความหมาย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-                        <option value="http://localhost/job1.php">พิการทางร่างกายหรือการเคลื่อนไหว</option>
-                        <option value="http://localhost/job1.php">พิการทางจิตใจหรือพฤติกรรม</option>
-                        <option value="http://localhost/job1.php">พิการทางสติปัญญา</option>
-                        <option value="http://localhost/job1.php">พิการทางการเรียนรู้</option>
-                        <option value="http://localhost/job1.php">พิการทางออทิสติก</option> 
-						  </select>
+						<div class="btn-group" role="group" aria-label="...">
+                            <select class="form-control" name="filter1">
+                                <option >เลือกประเภทความพิการ</option>
+                                <option value="พิการทางการเห็น">พิการทางการเห็น</option>
+                                <option value="พิการทางการได้ยินหรือสื่อความหมาย">พิการทางการได้ยินหรือสื่อความหมาย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                <option value="พิการทางร่างกายหรือการเคลื่อนไหว">พิการทางร่างกายหรือการเคลื่อนไหว</option>
+                                <option value="พิการทางจิตใจหรือพฤติกรรม">พิการทางจิตใจหรือพฤติกรรม</option>
+                                <option value="พิการทางสติปัญญา">พิการทางสติปัญญา</option>
+                                <option value="พิการทางการเรียนรู้">พิการทางการเรียนรู้</option>
+                                <option value="พิการทางออทิสติก">พิการทางออทิสติก</option>
+                            </select>
 						  </div>
 						<br>
 						<br>
 						<br>
 						<label for="inputLastname" class="col-sm-4 control-label"><h4>เลือกประเภทงานที่ต้องการ</h4></label>
 						<div class="btn-group" role="group" aria-label="...">
-						<select name="DDM" class="form-control">
-						<option>เลือกประเภทงานที่ต้องการ</option>
-                        <option value="http://localhost/job1.php"> การตลาด</option>
-                      	<option value="http://localhost/job2.php">ประชาสัมพันธ์ </option>
-                        <option>การผลิต</option>
-						<option>การศึกษา/วิชาการ </option>
-						<option>ขนส่ง </option>
-						<option> ฝ่ายขาย </option>
-						<option>  บริการลูกค้า</option>
-						<option> ฝ่ายจัดซื้อ</option>
-						<option>ท่องเที่ยวและโรงแรม </option>
-						<option>อาหารและเครื่องดื่ม</option>
-						<option>การเงินและธนาคาร </option>
-						<option>ทรัพยากรบุคคล </option>
-						<option> บริการเฉพาะทาง</option>
-						<option> บัญชี </option>
-						<option> หน่วยงานราชการ </option>
-						<option> โภชนาการ/สุขภาพ/ความงามด้านต่างๆ&nbsp;&nbsp;&nbsp;</option>
-						<option>ออกแบบ </option>
-						<option>สื่อและโฆษณา </option>
-						<option>  ไอที </option>
-						<option> อื่นๆ </option>
-                        
+						<select name="filter2" class="form-control">
+                            <option >เลือกประเภทงานที่ต้องการ</option>
+                            <option value="การตลาด"> การตลาด</option>
+                            <option value="ประชาสัมพันธ์">ประชาสัมพันธ์ </option>
+                            <option value="การผลิต">การผลิต</option>
+                            <option value="การศึกษา/วิชาการ">การศึกษา/วิชาการ </option>
+                            <option value="ขนส่ง">ขนส่ง </option>
+                            <option value="ฝ่ายขาย">ฝ่ายขาย </option>
+                            <option value="บริการลูกค้า">บริการลูกค้า</option>
+                            <option value="ฝ่ายจัดซื้อ">ฝ่ายจัดซื้อ</option>
+                            <option value="ท่องเที่ยวและโรงแรม">ท่องเที่ยวและโรงแรม </option>
+                            <option value="อาหารและเครื่องดื่ม">อาหารและเครื่องดื่ม</option>
+                            <option value="การเงินและธนาคาร">การเงินและธนาคาร </option>
+                            <option value="ทรัพยากรบุคคล">ทรัพยากรบุคคล </option>
+                            <option value="บริการเฉพาะทาง"> บริการเฉพาะทาง</option>
+                            <option value="ัญชี"> บัญชี </option>
+                            <option value="หน่วยงานราชการ">หน่วยงานราชการ </option>
+                            <option value="โภชนาการ/สุขภาพ/ความงามด้านต่างๆ"> โภชนาการ/สุขภาพ/ความงามด้านต่างๆ&nbsp;</option>
+                            <option value="ออกแบบ">ออกแบบ </option>
+                            <option value="สื่อและโฆษณา">สื่อและโฆษณา </option>
+                            <option value="ไอที">  ไอที </option>
+                            <option value="อื่นๆ"> อื่นๆ </option>
 						  </select>
 						  </div>
 						<br>
 						<br>
 						<br>
 						<label for="inputLastname" class="col-sm-4 control-label"><h4>เลือกจังหวัดที่ต้องการ</h4></label>
-						<div class="btn-group " role="group" aria-label="..."><select  class="form-control">
-						<option>เลือกจังหวัดที่ต้องการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
-						<option>ปริมณฑล</option>
-                        <option value="http://localhost/job2.php" >กรุงเทพมหานคร</option>
-                      	<option>ต่างจังหวัด</option>
-                        
-						  </select>
+						<div class="btn-group " role="group" aria-label="...">
+                            <select name="filter3" class="form-control">
+                                <option>เลือกจังหวัดที่ต้องการ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                                <option value="ปริมณฑล">ปริมณฑล</option>
+                                <option value="กรุงเทพมหานคร" >กรุงเทพมหานคร</option>
+                                <option value="ต่างจังหวัด">ต่างจังหวัด</option>
+
+                            </select>
 						  </div>
 						<br>
 					<br>
 					<br>
-					
-					<a class="btn btn-primary" onClick = "Linkup(this.form)" role="button">ค้นหา</a>
-					
+					<!--
+					<a class="btn btn-primary" type="submit" role="button">ค้นหา</a>
+					-->
+                                <input name="myBtn" type="submit">
+                                <br>
 					  </div>
 					  </form>
                 </div>
@@ -124,97 +122,63 @@ location.href = document.DD.DDM.options[number].value;
 
        
         <!-- /.container -->
-		<div class="col-lg-12">
-                    <h1 class="page-header"><center>
-					ประวัติการค้นหา</center></h1>
-                </div>
-                <div class="row">
+    <div>
+        <?php
+        require 'vendor/autoload.php';
+        $search_output = "";
+        $search_input1 = "";
+        $search_input2 = "";
+        $search_input3 = "";
+        echo $_POST['filter1'];
+        echo $_POST['filter2'];
+        echo $_POST['filter3'];
+        $search_input1 = $_POST['filter1'];
+        $search_input2 = $_POST['filter2'];
+        $search_input3 = $_POST['filter3'];
+        if($search_input1 =='') {
+            $js = "function() {
+    return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' ;}";
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/job1.jpg" width="150"  alt="">
-                            <div class="caption">
-                                <h4><a href="#">รพ.เกษมราษฎร์ </a>
-                                </h4>
-                                <p>ที่อยู๋ : ต.บางแคเหนือ อ.บางแค จ.กรุงเทพมหานคร </p>
-								<p>ตำแหน่ง : พนักงานทั่วไป</p>
-								<p>ความพิการ : พิการทางการได้ยินหรือสื่อความหมาย </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+        }else if($search_input2 == '') {
+            $js = "function() {
+    return this.province ==  '$search_input3' && this.disabletype == '$search_input1' ;}";
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                       <div class="thumbnail">
-                            <img src="img/job2.jpg" width="150"  alt="">
-                            <div class="caption">
-                                <h4><a href="#">โรงแรมเซ็นทารา วอเตอร์เกท พาวิลเลี่ยน </a>
-                                </h4>
-                                <p>ที่อยู๋ :ต.มักกะสัน อ.ราชเทวี จ.กรุงเทพมหานคร </p>
-								<p>ตำแหน่ง : พนักงานปฏิบัติการ</p>
-								<p>ความพิการ : พิการทางการได้ยินหรือสื่อความหมาย </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+        }else if($search_input3 == '') {
+            $js = "function() {
+    return this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/job3.jpg" width="150"  alt="">
-                            <div class="caption">
-                                <h4><a href="#">บจก.นีโอ สุกี้ไทยเรสเทอรองส์</a>
-                                </h4>
-                                <p>ที่อยู๋ : ต.บางโคล่ อ.บางคอแหลม จ.กรุงเทพมหานคร </p>
-								<p>ตำแหน่ง : อาหารและเครื่องดื่ม</p>
-								<p>ความพิการ : พิการทางการได้ยินหรือสื่อความหมาย </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+        } else{
+            $js = "function() {
+    return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
+        }
+        echo $js;
+        $db = (new MongoDB\Client)->JobDisable->company;
+        $cursor = $db->find(array('$where' => $js));
+        // echo $cursor['company_name'];
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/job4.jpg" width="150"  alt="">
-                            <div class="caption">
-                                <h4><a href="#">บริษัท ท๊อป มารีไทม์ เซอร์วิส จำกัด</a>
-                                </h4>
-                                <p>ที่อยู๋ : ต.บางนา อ.บางนา จ.กรุงเทพมหานคร </p>
-								<p>ตำแหน่ง : ธุรการ การจัดการทั่วไป</p>
-								<p>ความพิการ : พิการทางการได้ยินหรือสื่อความหมาย </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+        print '<pre>';
+        foreach ($cursor as $doc) {
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/job5.png" width="150"  alt="">
-                            <div class="caption">
-                                <h4><a href="#">บริษัทแอนเซอร์วันจำกัด</a>
-                                </h4>
-                                <p>ที่อยู๋ : ต.พลับพลา อ.วังทองหลาง จ.กรุงเทพมหานคร</p>
-								<p>ตำแหน่ง : โปรแกรมเมอร์</p>
-								<p>ความพิการ : พิการทางการได้ยินหรือสื่อความหมาย </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+            if($doc['company_name']==''){
+                echo 'notfound';
+            }else {
+                echo sprintf("name: %s, Type: %s%s", $doc['company_name'], $doc['disabletype'], PHP_EOL);
+                ?>
+                <button  class="btn btn-lg btn-info">บันทึก</button>
+                <br>
+                <br>
+                <?php
 
-                    
+            }
+        }
+        print '<pre>';
+        // $count = mysql_num_rows($query);
 
-                </div>
-    <div class="container marketing">
 
-     
+        ?>
+    </div>
 
-     
-      <footer>
-            
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        
-      </footer>
-
-    </div><!-- /.container -->
+	<!-- /.container -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
