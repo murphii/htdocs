@@ -32,8 +32,8 @@
 					<br>
 					<br>
 					<br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-lg btn-info">เข้าสู่ระบบ</button>	
-					
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-lg btn-info">เข้าสู่ระบบ</button>
+					&nbsp;&nbsp;<a href="insert link here naja" >ลงทะเบียน</a>
 				</form> 
 				</div>
 	</div>
