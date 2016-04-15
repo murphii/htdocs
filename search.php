@@ -112,7 +112,7 @@
 					<!--
 					<a class="btn btn-primary" type="submit" role="button">ค้นหา</a>
 					-->
-                               
+
                                 <button type="submit" class="btn btn-lg btn-info">ค้นหา</button>
                                 <br>
 					  </div>
@@ -170,6 +170,7 @@
                     <div class="well" >
                         <div >
                             <div>
+                                <form action="job1.php" method="post">
                                 <h3><?php echo $doc['position']; ?></h3>
                                 <img width="150" align="left" src="http://placehold.it/64x64" alt="">
 
@@ -186,9 +187,13 @@
                                 <br>
                                 <br>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-lg btn-info">บันทึก</button>
-                                <button class="btn btn-lg btn-info">ข้อมูล</button>
+
+                                    <input type="hidden" name="id" value="<?php echo $doc['_id']?>"/>
+                                    <input type="hidden" name="company" value="<?php echo $doc['company_name']?>"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-lg btn-info">บันทึก</button>
+                                    <button type="submit" class="btn btn-lg btn-info">ข้อมูล</button>
+                                </form>
                             </div>
                         </div>
 

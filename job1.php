@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -41,62 +40,13 @@
 <body>
 <!-- Navigation -->
     <?php include 'header.php';?>
-
-
-    <div id="wrapper">
-		
-        <!-- Navigation -->
-        
-        </div> 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="job1.php"> ITALTHAI
-							 <img width="50"  align="right" src="img/search_p1.jpg" > </img><br><br>
-							ที่อยู่ : ต.บางกะปิ อ.ห้วยขวาง จ.กรุงเทพมหานคร<br>
-							ตำแหน่ง : พนักงานรับโทรศัพท์<br>
-							</a>
-                        </li>
-                        <li>
-                            <a href="job1-2.php">บริษัทมิตรไมตรีการแพทย์
-							 <img width="50"  align="right" src="img/search_p2.jpg" > </img><br><br>
-							ที่อยู่ : ต.ปากเกร็ด อ.ตลาดขวัญ จ.นนทบุรี<br>
-							ตำแหน่ง : พนักงานรับโทรศัพท์<br>
-							</a>
-                        </li>
-						<li>
-                            <a href="job1.php"> บริษัท อีซูซุ เมโทร 
-							 <img width="50"  align="right" src="img/search_p2.2.jpg" > </img><br><br>
-							ที่อยู่ : ต.ทุ่งสองห้อง อ.หลักสี่ จ.กรุงเทพมหานคร<br>
-							ตำแหน่ง : การตลาดอื่นๆ<br>
-							</a>
-                        </li>
-						<li>
-                            <a href="job1.php"> Precious Wood
-							 <img width="50"  align="right" src="img/search_p3.jpg" > </img><br><br>
-							ที่อยู่ : ต.ลุมพินี อ.ปทุมวัน จ.กรุงเทพมหานคร<br>
-							ตำแหน่ง : พนักงานรับโทรศัพท์<br>
-							</a>
-                        </li>
-						<li>
-                            <a href="job1.php"> บริษัท เอส เอช เค กรุ๊ป 
-							 <img width="50"  align="right" src="img/search_p4.jpg" > </img><br><br>
-							ที่อยู่ : ต.เสนานิคม อ.จตุจักร จ.กรุงเทพมหานคร<br>
-							ตำแหน่ง : ประชาสัมพันธ์ทั่วไป<br>
-							</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
+<div class="container">
+<div class="row">
+        <div class="col-lg-10" >
             <div class="row">
+                <br>
                 <div class="col-lg-12">
-                    <h1 class="page-header">บริษัท อิตัลไทยอุตสาหกรรม จำกัด สาขา สำนักงานใหญ่</h1>
+                    <h1 align="center" class="page-header">บริษัท อิตัลไทยอุตสาหกรรม จำกัด สาขา สำนักงานใหญ่</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -109,7 +59,10 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
-                                       <img src="img/search_p1.jpg" ></img>
+
+                                            <img align="middle" src="img/search_p1.jpg" ></img>
+
+
 
                                         <p>
 												<h3>รายละเอียดงาน</h3><br>
@@ -144,13 +97,33 @@
 												อีเมล : konlayut@snpfood.com<br> </p>
                                         <br>
 										<button type="reset" class="btn btn-default">สมัครงาน</button>
-                                        <button type="reset" class="btn btn-default">บันทึกงาน</button>
-										
+                                        <button type="reset" class="btn btn-default">บันทึกงาน</button> </form>
+                                        <?php
+                                        require 'vendor/autoload.php';
+                                        use MongoDB\BSON\ObjectID;
+
+                                        $db = (new MongoDB\Client)->JobDisable->company;
+
+                                        $item = $db->findOne(array('_id' => new ObjectId($_POST['id'])));
+                                        echo $item['company_name'];
+                                        print '<pre>';
+                                        foreach ($cursor as $doc) {
+                                            echo 'hi';
+                                            echo sprintf("name: %s, Type: %s%s", $doc['company_name'], $doc['disabletype'], PHP_EOL);
+
+                                            //var_dump($doc);
+                                        }
+                                        print '<pre>';
+
+                                        //echo $_POST['id'];
+                                        //echo $_POST['company'];
+                                        ?>
+
 										</div>
                                         
                                         
                                         
-                                    </form>
+
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 
@@ -167,9 +140,9 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+</div>
 
-    </div>
-    <!-- /#wrapper -->
+
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
