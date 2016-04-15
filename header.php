@@ -28,10 +28,10 @@
                         <a href="#">งานที่บันทึก</a>
                     </li>
 					<li>
-                        <a href="newsfeed.php">ข่าวสาร</a>
-                    </li>
-					<li>
                         <a href="register-1.php">แก้ไขโปรไฟล์</a>
+                    </li>
+                    <li>
+                    <a href="">ออกจากระบบ</a>
                     </li>
                 </ul>
             </div>

@@ -112,7 +112,8 @@
 					<!--
 					<a class="btn btn-primary" type="submit" role="button">ค้นหา</a>
 					-->
-                                <input name="myBtn" type="submit">
+                               
+                                <button type="submit" class="btn btn-lg btn-info">ค้นหา</button>
                                 <br>
 					  </div>
 					  </form>
@@ -122,61 +123,92 @@
 
        
         <!-- /.container -->
-    <div>
+
         <?php
-        require 'vendor/autoload.php';
+        if(isset($_POST['filter1']) && isset($_POST['filter1'])&&isset($_POST['filter1'])){
+
+            require 'vendor/autoload.php';
         $search_output = "";
         $search_input1 = "";
         $search_input2 = "";
         $search_input3 = "";
-        echo $_POST['filter1'];
-        echo $_POST['filter2'];
-        echo $_POST['filter3'];
-        $search_input1 = $_POST['filter1'];
-        $search_input2 = $_POST['filter2'];
-        $search_input3 = $_POST['filter3'];
-        if($search_input1 =='') {
-            $js = "function() {
+
+            $search_input1 = $_POST['filter1'];
+            $search_input2 = $_POST['filter2'];
+            $search_input3 = $_POST['filter3'];
+
+                if ($search_input1 == '') {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' ;}";
 
-        }else if($search_input2 == '') {
-            $js = "function() {
+                } else if ($search_input2 == '') {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.disabletype == '$search_input1' ;}";
 
-        }else if($search_input3 == '') {
-            $js = "function() {
+                } else if ($search_input3 == '') {
+                    $js = "function() {
     return this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
 
-        } else{
-            $js = "function() {
+                } else {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
-        }
-        echo $js;
-        $db = (new MongoDB\Client)->JobDisable->company;
-        $cursor = $db->find(array('$where' => $js));
-        // echo $cursor['company_name'];
+                }
+            echo $js;?>
+            <h2 align="middle">ผลการค้นหา</h2>
+            <?php
+            $db = (new MongoDB\Client)->JobDisable->company;
+            $cursor = $db->find(array('$where' => $js));
 
-        print '<pre>';
-        foreach ($cursor as $doc) {
 
-            if($doc['company_name']==''){
-                echo 'notfound';
-            }else {
-                echo sprintf("name: %s, Type: %s%s", $doc['company_name'], $doc['disabletype'], PHP_EOL);
-                ?>
-                <button  class="btn btn-lg btn-info">บันทึก</button>
-                <br>
-                <br>
-                <?php
+            foreach ($cursor as $doc) {
 
+                if ($doc['company_name'] == '') {
+                    echo 'notfound';
+                } else {
+
+                    ?>
+                    <div class="well" >
+                        <div >
+                            <div>
+                                <h3><?php echo $doc['position']; ?></h3>
+                                <img width="150" align="left" src="http://placehold.it/64x64" alt="">
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ชื่อหน่วยงาน :<?php echo $doc['company_name']; ?>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สถานที่ปฏิบัติงาน :<?php echo $doc['province']; ?>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ระดับเงินเดือน :<?php echo $doc['salary']; ?>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;จำนวนที่เปิดรับ :<?php echo $doc['employment_rate']; ?>
+                                อัตรา
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ประเภทความพิการ :<?php echo $doc['disabletype']; ?>
+                                <br>
+                                <br>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-lg btn-info">บันทึก</button>
+                                <button class="btn btn-lg btn-info">ข้อมูล</button>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+
+                    </div>
+
+
+                    <?php
+
+                }
             }
-        }
-        print '<pre>';
-        // $count = mysql_num_rows($query);
 
+            // $count = mysql_num_rows($query);
+        }
 
         ?>
-    </div>
+
 
 	<!-- /.container -->
 
