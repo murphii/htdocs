@@ -36,7 +36,17 @@
     <![endif]-->
 
 </head>
+<?php
+require 'vendor/autoload.php';
+use MongoDB\BSON\ObjectID;
 
+$db = (new MongoDB\Client)->JobDisable->company;
+
+$item = $db->findOne(array('_id' => new ObjectId($_POST['id'])));
+
+//echo $_POST['id'];
+//echo $_POST['company'];
+?>
 <body>
 <!-- Navigation -->
     <?php include 'header.php';?>
@@ -46,7 +56,7 @@
             <div class="row">
                 <br>
                 <div class="col-lg-12">
-                    <h1 align="center" class="page-header">บริษัท อิตัลไทยอุตสาหกรรม จำกัด สาขา สำนักงานใหญ่</h1>
+                    <h2 align="center" class="page-header"><?php echo $item['company_name'] ?></h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -57,67 +67,35 @@
                         
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div  class="container col-lg-12">
                                     <form role="form">
 
-                                            <img align="middle" src="img/search_p1.jpg" ></img>
-
-
-
-                                        <p>
+                                        <img width="450" style="margin: 0 auto; display:block;" src=<?php echo $item['pic'] ?> /><p>
+                                        <div class="col-lg-1"></div>
+                                            <div class="col-lg-10">
 												<h3>รายละเอียดงาน</h3><br>
-												ตำแหน่ง ผลิตทั่วไป 3 อัตรา งานประจำ อัตราค่าจ้าง เดือนละ 9,000 บาท สวัสดิการ ประกันสังคม ค่าอาหาร เงินช่วยเหลือการศึกษาบุตร เงินช่วยเหลือกรณีมีบุตร งานกีฬาสี งานเลี้ยงครบรอบปีบริษัท แพทย์และพยาบาลประจำ การฝึกอบรมในบริษัท การฝึกอบรมนอกบริษัท วันหยุดพักผ่อน เงินช่วยเหลือการเสียชีวิต เงินกู้ยืม ของขวัญวันปีใหม่ กองทุนเงินทดแทน ประกันชีวิต โบนัสประจำปี staff party ชุดยูนิฟอร์ม ค่าเดินทาง เบี้ยเลี้ยงออกต่างจังหวัด รถรับส่งประจำทาง เบี้ยขยัน และ ของขวัญวันเกิด 
-												หน่วยงานอนามัย
+                                                <?php echo $item['description'] ?>
 												<br>
 												<br>
 												<h3>คุณสมบัติผู้สมัคร</h3><br>
-												พิการทางการได้ยินหรือสื่อความหมาย พิการทางร่างกายหรือการเคลื่อนไหว หรือ พิการทางจิตใจหรือพฤติกรรม ไม่จำกัดเพศ อายุ 20 ปี แต่ไม่เกิน 40 ปี
+                                                <?php echo $item['property'] ?>
 												<br>
 												<br>
 												<h3>เอกสารหลักฐานที่ใช้ในการสมัคร</h3><br>
-												- สำเนาบัตรประชาชน<br>
-												- สำเนาทะเบียนบ้าน<br>
-												- สำเนาวุฒิการศึกษา (ถ้ามี)<br>
-												- สมุดประจำตัวคนพิการ<br>
-												- บัตรประจำตัวคนพิการ<br>
+                                                <?php echo nl2br($item['document']) ?>
 												<br><br>
 
-												<h3>การรับสมัคร</h3><br>
-												-<br>
-												<br><br>
-
-												<h3>สิ่งอำนวยความสะดวก</h3><br>
-												-<br>
+												<h3>ประสบการณ์การทำงาน</h3><br>
+                                                <?php echo nl2br($item['experience']) ?>
 												<br><br>
 
 												<h3>ข้อมูลติดต่อ</h3><br>
-												คุณนายกลยุทธ์ ศรีนิลปกรณ์<br>
-												หน่วยงาน : บ. เอส แอนด์ พี ซินดิเคท จำกัด (มหาชน) สาขา โรงงานลาดกระบัง<br>
-												โทรศัพท์ : 027394494-6<br>
-												อีเมล : konlayut@snpfood.com<br> </p>
+                                                <?php echo nl2br($item['contact']) ?>
+                                                <br><br>
+                                            </div> </p>
                                         <br>
-										<button type="reset" class="btn btn-default">สมัครงาน</button>
-                                        <button type="reset" class="btn btn-default">บันทึกงาน</button> </form>
-                                        <?php
-                                        require 'vendor/autoload.php';
-                                        use MongoDB\BSON\ObjectID;
+										</form>
 
-                                        $db = (new MongoDB\Client)->JobDisable->company;
-
-                                        $item = $db->findOne(array('_id' => new ObjectId($_POST['id'])));
-                                        echo $item['company_name'];
-                                        print '<pre>';
-                                        foreach ($cursor as $doc) {
-                                            echo 'hi';
-                                            echo sprintf("name: %s, Type: %s%s", $doc['company_name'], $doc['disabletype'], PHP_EOL);
-
-                                            //var_dump($doc);
-                                        }
-                                        print '<pre>';
-
-                                        //echo $_POST['id'];
-                                        //echo $_POST['company'];
-                                        ?>
 
 										</div>
                                         

@@ -171,8 +171,8 @@
                         <div >
                             <div>
                                 <form action="job1.php" method="post">
-                                <h3><?php echo $doc['position']; ?></h3>
-                                <img width="150" align="left" src="http://placehold.it/64x64" alt="">
+                                <h3>เปิดรับสมัครตำแหน่ง<?php echo $doc['position']; ?></h3>
+                                <img width="150" align="left" src=<?php echo $doc['pic']; ?> alt="">
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ชื่อหน่วยงาน :<?php echo $doc['company_name']; ?>
                                 <br>
