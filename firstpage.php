@@ -18,7 +18,7 @@
     <header>
     <center><img class="page-header" src="img/logo.png"></center>
     </header>
-
+    <br><br>
     <center><p><a class="btn btn-primary" href="login_disable.php" role="button">คนพิการ</a></p></center>  
   <br>
 
