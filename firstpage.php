@@ -22,7 +22,6 @@
     <center><p><a class="btn btn-primary" href="login_disable.php" role="button">คนพิการ</a></p></center>  
   <br>
 
-  <center><p><a class="btn btn-primary" href="login_company.php" role="button">ผู้ประกอบการ</a></p></center>  
   <br>
     </center>
 
