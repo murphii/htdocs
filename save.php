@@ -43,9 +43,11 @@
 <!-- /.container -->
     <h2 align="middle">งานที่บันทึก</h2>
     <?php
+    session_start();
     require 'vendor/autoload.php';
     $db = (new MongoDB\Client)->JobDisable->savejob;
-    $cursor = $db->find(array('email' => $_POST['email']));
+    $cursor = $db->find(array('email' => $_SESSION["email"]));
+    //"beam@hot.com"
     foreach ($cursor as $doc) {
 
         if ($doc['email'] == '') {
@@ -62,13 +64,13 @@
                             <br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประเภทงาน : <?php echo $doc['fieldofwork']; ?>
                             <br><br>
-
                             <input type="hidden" name="id" value="<?php echo $doc['_id']?>"/>
                             <input type="hidden" name="company" value="<?php echo $doc['company_name']?>"/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="submit" class="btn btn-lg btn-info">ข้อมูล</button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-lg btn-info">ลบ</button>
+                            <button type="submit" class="btn btn-lg btn-info">ข้อมูล</button><br><br>
+                        </form>
+                        <form action='savedelete.php' method='post'>
+                            <input type="hidden" name="id" value="<?php echo $doc['_id']?>"/>
+                            <button type='submit' class='btn btn-lg btn-danger'>ลบ</button>
                         </form>
                     </div>
                 </div>

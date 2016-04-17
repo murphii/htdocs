@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -191,8 +192,21 @@
                                     <input type="hidden" name="id" value="<?php echo $doc['_id']?>"/>
                                     <input type="hidden" name="company" value="<?php echo $doc['company_name']?>"/>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-lg btn-info">บันทึก</button>
                                     <button type="submit" class="btn btn-lg btn-info">ข้อมูล</button>
+                                </form>
+                                <form action="searchsave.php" method="post">
+                                    <?php //"beam@hot.com"
+                                    $email = $_SESSION["email"] ?>
+                                    <input type="hidden" name="id" value="<?php echo $doc['_id'];
+                                    ?>"/>
+                                    <input type="hidden" name="company" value="<?php echo $doc['company_name'];
+                                    ?>"/>
+                                    <input type="hidden" name="position" value="<?php echo $doc['position'];
+                                    ?>"/>
+                                    <input type="hidden" name="fieldofwork" value="<?php echo $search_input2;
+                                    ?>"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-lg btn-success">บันทึก</button>
                                 </form>
                             </div>
                         </div>
