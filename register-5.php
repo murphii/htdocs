@@ -8,7 +8,7 @@ if (!$_SESSION["register"]) {
 }
 
 $disablenumber = (!$_SESSION["register"]["disablenumber"]) ? "" : $_SESSION["register"]["disablenumber"];
-$disabletype = (!$_SESSION["register"]["disablety"]) ? "" : $_SESSION["register"]["disabletype"];
+$disabletype = (!$_SESSION["register"]["disabletype"]) ? "" : $_SESSION["register"]["disabletype"];
 $disability = (!$_SESSION["register"]["disability"]) ? "" : $_SESSION["register"]["disability"];
 $description = (!$_SESSION["register"]["description"]) ? "" : $_SESSION["register"]["description"];
 $assistive_accessory = (!$_SESSION["register"]["assistive_accessory"]) ? "" : $_SESSION["register"]["assistive_accessory"];
@@ -30,7 +30,7 @@ $assistive_accessory = (!$_SESSION["register"]["assistive_accessory"]) ? "" : $_
 <br>
 <div class="container">
     <div class="col-lg-12 well">
-        <form name="registerform5" id="registerform5" method="post" action="register-6.php">
+
 
             <div class="row">
                 <?php //This
@@ -42,20 +42,24 @@ $assistive_accessory = (!$_SESSION["register"]["assistive_accessory"]) ? "" : $_
                     <li role="presentation"><a href="register-3.php">ประวัติการทำงาน</a></li>
                     <li role="presentation"><a href="register-4.php">สายอาชีพที่ต้องการ</a></li>
                     <li role="presentation" class="active"><a href="register-5.php">ความพิการและอุปกรณ์</a></li>
-                    <li role="presentation"><a href="register-6.php">รูปถ่าย</a></li>
+                    <li role="presentation"><a>รูปถ่าย</a></li>
                 </ul>
                 <br><br>
             </div>
 
-            เลขที่บัตรประจำตัวผู้พิการ : <input name="disablenumber" type="text" value="<?= $disablenumber ?>"
-                                                data-validation="required number length"
-                                                data-validation-length="13"
-                                                data-validation-error-msg="กรุณากรอกเลขที่บัตรประจำตัวผู้พิการ">
-            <br><br>
+        <form name="registerform5" id="registerform5" method="post" action="register-6.php">
 
+            <div>
+            เลขที่บัตรประจำตัวผู้พิการ : <input name="disablenumber" type="text" value="<?= $disablenumber ?>"
+                                                data-validation="required number"
+                                                data-validation-error-msg="กรุณากรอกเลขที่บัตรประจำตัวผู้พิการ">
+            <br></div><br>
+
+            <div>
             ประเภทความพิการ : <select name="disabletype" form="register5" selected="<?= $disabletype ?>"
                                       data-validation="required" data-validation-error-msg="กรุณาเลือกประเภทความพิการ">
-                <option value="null" <?= $disabletype == "null" ? "selected" : "" ?>>เลือกประเภทความพิการ
+
+                <option value="null" <?= !$disabletype ? "selected disabled" : "disabled" ?>>เลือกประเภทความพิการ
                 </option>
                 <option value="eye" <?= $disabletype == "eye" ? "selected" : "" ?>>พิการทางการเห็น</option>
                 <option value="ear"
@@ -67,17 +71,18 @@ $assistive_accessory = (!$_SESSION["register"]["assistive_accessory"]) ? "" : $_
                 <option value="behaviour" <?= $disabletype == "eye" ? "behaviour" : "" ?>>
                     พิการทางจิตใจหรือพฤติกรรม
                 </option>
-                <!--<option  value="intelligence" <?= $disabletype == "intelligence" ? "selected" : "" ?>>พิการทางสติปัญญา</option>
-                        <option  value="learning" <?= $disabletype == "learning" ? "selected" : "" ?>>พิการทางการเรียนรู้</option>
-                        <option  value="autistic" <?= $disabletype == "autistic" ? "selected" : "" ?>>พิการทางออทิสติก</option> -->
+                <option value="intelligence" <?= $disabletype == "intelligence" ? "selected" : "" ?>>พิการทางสติปัญญา
+                </option>
+                <option value="learning" <?= $disabletype == "learning" ? "selected" : "" ?>>พิการทางการเรียนรู้
+                </option>
+                <option value="autistic" <?= $disabletype == "autistic" ? "selected" : "" ?> >พิการทางออทิสติก</option>
             </select>
-            <br><br>
+            <br></div><br>
 
-            ลักษณะความพิการ : <select name="disability">
-                <!-- จะมีลักษณะความพิการของแต่ละประเภทอีก คือถ้าเลือกพิการประเภท1(พิการทางการเห็น) จะให้ขึ้นลักษณะ2อันให้เลือกอัตโนมัติ (ตาเลือนราง,ตาบอด) -->
+            <!--ลักษณะความพิการ : <select name="disability">
+                <!-- จะมีลักษณะความพิการของแต่ละประเภทอีก คือถ้าเลือกพิการประเภท1(พิการทางการเห็น) จะให้ขึ้นลักษณะ2อันให้เลือกอัตโนมัติ (ตาเลือนราง,ตาบอด)
                 <option>เลือกลักษณะความพิการ</option>
-            </select>
-            <br><br>
+            </select> -->
 
             อธิบายรายละเอียด : <input name="description" type="text">
             <br><br>

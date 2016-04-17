@@ -39,7 +39,6 @@ if(isset($_SESSION['authentication'])){ ?>
     <script type="text/javascript">
         window.location = "mainpage.php"
     </script>
-    You're already logged in, redirecting you.
 <?php } else {
 
     require "vendor/autoload.php";
@@ -72,7 +71,7 @@ if(isset($_SESSION['authentication'])){ ?>
             </script> <?php
 
         } else {
-            $wrongflag = 1;
+            header("Location: login_disable.php#wrong");
         }
 
     }
@@ -87,6 +86,18 @@ if(isset($_SESSION['authentication'])){ ?>
     <meta charset="utf-8">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+<script>
+    window.onload = function () {
+        var h = window.location.hash;
+        if (h){
+            if (h == '#wrong'){
+                alert("ผิดค่ะ");
+            }
+        }
+
+    }
+
+</script>
 <body>
 
 <?php include 'header.php'; ?>
@@ -100,6 +111,8 @@ if(isset($_SESSION['authentication'])){ ?>
 
             <form action="login_disable.php" METHOD="POST">
                 <div class="col-sm-12">
+
+                    <div id="hashMessage" class="bg-danger"></div>
 
                     <div class="col-sm-7 form-group">
                         <label>อีเมล์</label>

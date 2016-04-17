@@ -7,20 +7,20 @@ function imageUpload($q)
     $imageFileType = pathinfo($_FILES[$q]["name"], PATHINFO_EXTENSION);
 
     if (file_exists($target_file)) {
-        header('Location: register-6.php');
+        //header('Location: register-6.php');
     }
     if ($_FILES[$q]["size"] > 4000000) {
-        header('Location: register-6.php');
+        //header('Location: register-6.php');
     }
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif"
     ) {
-        header('Location: register-6.php');
+        //header('Location: register-6.php');
     }
     if (move_uploaded_file($_FILES[$q]["tmp_name"], $target_file . $imageFileType)) {
         return $target_file . $imageFileType;
     } else {
-        header('Location: register-6.php');
+       // header('Location: register-6.php');
     }
 }
 

@@ -6,6 +6,7 @@ error_reporting(0);
 if (!$_SESSION["register"]) {
     $_SESSION["register"] = array();
 }
+
 ?>
 
 <html>
@@ -40,19 +41,19 @@ if (!$_SESSION["register"]) {
                 <br><br>
             </div>
 
-            รูปถ่ายหน้าตรงครึ่งตัว : <input id="face" name="face" type="file" data-validation="size mime"
+            รูปถ่ายหน้าตรงครึ่งตัว : <input id="face" name="face" type="file" data-validation="size mime required"
                                             data-validation-max-size="3M"
                                             data-validation-allowing="jpg, jpeg, png, gif"
                                             data-validation-error-msg="กรุณาใสรูปถ่าย">
             <br><br>
 
-            รูปถ่ายเต็มตัว : <input id="body" name="body" type="file" data-validation="size mime"
+            รูปถ่ายเต็มตัว : <input id="body" name="body" type="file" data-validation="size mime required"
                                     data-validation-max-size="3M"
                                     data-validation-allowing="jpg, jpeg, png, gif"
                                     data-validation-error-msg="กรุณาใส่รูปถ่าย">
             <br><br>
 
-            <input type="submit" value="บันทึก" name="submit">
+            <input id="form6submit" type="submit" value="บันทึก" name="submit">
 
 
         </form>
