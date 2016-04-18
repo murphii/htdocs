@@ -25,10 +25,10 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
     <script src="js/jquery.js"></script>
     <script src="js/jquery.form-validator.min.js"></script>
     <script>
-        function showMore(){
+        function showMore() {
             $("#ifhave").show();
         }
-        function hideMore(){
+        function hideMore() {
             $("#ifhave").hide();
             $("input[type='text']").val("");
             $("input[type='date']").val("");
@@ -62,10 +62,12 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
 
             <div>
                 คุณเคยมีประสบการณ์ทำงานหรือไม่ :&nbsp;&nbsp;&nbsp;<input name="experience" type="radio" id="yesexp"
-                                                                         value="YES" onclick="showMore()" <?= $experience == "1" ? checked : "" ?>>
+                                                                         value="YES"
+                                                                         onclick="showMore()" <?= $experience == "1" ? checked : "" ?>>
                 มี &nbsp;&nbsp;&nbsp;<input
                     id="noexp"
-                    name="experience" type="radio" value="NO" onclick="hideMore()" <?= $experience == "0" ? checked : "" ?>> ไม่มี
+                    name="experience" type="radio" value="NO"
+                    onclick="hideMore()" <?= $experience == "0" ? checked : "" ?>> ไม่มี
                 <br></div>
             <br>
 
@@ -86,13 +88,14 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
                 <div>
                     ระยะเวลาที่ทำงาน : &nbsp;&nbsp;&nbsp; เริ่มต้น <input name="start_worked" type="date"
                                                                           value="<?= $start_worked ?>"
-                                                                          data-validation="date"
                                                                           data-validation-format="dd/mm/yyyy"
                                                                           placeholder="dd/mm/yyyy">
-                    &nbsp;&nbsp;&nbsp;สิ้นสุด
-                    <input name="stop_worked" type="date" value="<?= $stop_worked ?>" data-validation="date"
-                           data-validation-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+                    <!-- data-validation="date" -->
 
+                    &nbsp;&nbsp;&nbsp;สิ้นสุด
+                    <input name="stop_worked" type="date" value="<?= $stop_worked ?>"
+                           data-validation-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+                    <!-- data-validation="date" -->
                     <br></div>
                 <br>
                 <br>

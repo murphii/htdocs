@@ -17,15 +17,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                <li>
+               <!-- <li>
                     <a class="navbar-brand" href="mainpage.php">หน้าแรก</a>
-                </li>
-                <li>
-                    <a href="search.php">ค้นหางาน</a>
-                </li>
+                </li> -->
+
                 <?php
                 if (isset($_SESSION['authentication'])) {
                     ?>
+                    <li>
+                        <a class="navbar-brand" href="search.php">ค้นหางาน</a>
+                    </li>
                     <li>
                         <a href="#">งานที่บันทึก</a>
                     </li>
@@ -37,7 +38,7 @@
                     </li>
                 <?php } else { ?>
                     <li>
-                        <a href="login_disable.php">เข้าสู่ระบบ</a>
+                        <a class="navbar-brand" href="firstpage.php">หน้าหลัก</a>
                     </li>
                 <?php } ?>
             </ul>

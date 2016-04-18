@@ -37,7 +37,7 @@ if (isset($_POST) and $_POST['submitForm'] == "Login") {
 
 if(isset($_SESSION['authentication'])){ ?>
     <script type="text/javascript">
-        window.location = "mainpage.php"
+        window.location = "search.php"
     </script>
 <?php } else {
 
@@ -67,7 +67,7 @@ if(isset($_SESSION['authentication'])){ ?>
 
             <script type="text/javascript">
                 console.log("right");
-                window.location = "mainpage.php";
+                window.location = "search.php";
             </script> <?php
 
         } else {
