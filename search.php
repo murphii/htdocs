@@ -136,31 +136,56 @@ session_start();
 
     require 'vendor/autoload.php';
     $search_output = "";
-    $search_input1 = "";
-    $search_input2 = "";
-    $search_input3 = "";
+        $search_input1 = "";
+        $search_input2 = "";
+        $search_input3 = "";
 
-    $search_input1 = $_POST['filter1'];
-    $search_input2 = $_POST['filter2'];
-    $search_input3 = $_POST['filter3'];
+            $search_input1 = $_POST['filter1'];
+            $search_input2 = $_POST['filter2'];
+            $search_input3 = $_POST['filter3'];
+                if($search_input1 == ''&&$search_input2 == ''){
+                    $js = "function() {
+        return this.province ==  '$search_input3' ;}";
+                }
+                else if($search_input1 == ''&&$search_input3 == ''){
+                    $js = "function() {
+        return  this.fieldofwork == '$search_input2' ;}";
+                }
+                else if($search_input2 == ''&&$search_input3 == ''){
+                    $js = "function() {
+        return this.disabletype == '$search_input1';}";
 
-    if ($search_input1 == '') {
-        $js = "function() {
+                }
+                else if ($search_input1 == '') {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' ;}";
 
-    } else if ($search_input2 == '') {
-        $js = "function() {
+                } else if ($search_input2 == '') {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.disabletype == '$search_input1' ;}";
 
-    } else if ($search_input3 == '') {
-        $js = "function() {
+                } else if ($search_input3 == '') {
+                    $js = "function() {
     return this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
 
-    } else {
-        $js = "function() {
+                }else if($search_input1 == ''&&$search_input2 == ''){
+                    $js = "function() {
+    return this.province ==  '$search_input3' ;}";
+                }
+                else if($search_input1 == ''&&$search_input3 == ''){
+                    $js = "function() {
+    return  this.fieldofwork == '$search_input2' ;}";
+                 }
+                else if($search_input2 == ''&&$search_input3 == ''){
+                    $js = "function() {
+    return this.disabletype == '$search_input1';}";
+
+                }
+                else {
+                    $js = "function() {
     return this.province ==  '$search_input3' && this.fieldofwork == '$search_input2' && this.disabletype == '$search_input1';}";
-    }
-    echo $js;?>
+                }
+            ?>
 </script>
     <h2 align="middle">ผลการค้นหา</h2>
 <?php
