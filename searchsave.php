@@ -1,11 +1,30 @@
 <?php 
+session_start(); 
 require "fixpost.php";
 require "vendor/autoload.php";
 //save to database
 $db = new MongoDB\Client();
 $collection = $db->JobDisable->savejob;
-$result = $collection->insertOne(array('email'=>"beam@hot.com",'_id' => $_POST['id'],'company_name'=>$_POST["company"],
+$res=0;
+function checkNum($result) {
+    if ($result['company_name'] != '') {
+        echo 'already added';
+        throw new Exception("งานนี้ได้ถูกเพิ่มเข้าไปแล้ว");
+    }
+    return true;
+}
+try{//"beam@hot.com"
+$result = $collection->findOne(array('email'=>$_SESSION["email"],'_id' => $_POST['id'],'company_name'=>$_POST["company"],
     'position'=>$_POST["position"],'fieldofwork'=>$_POST["fieldofwork"]));
+    checkNum($result);
+    //"beam@hot.com"
+    $collection->insertOne(array('email' => $_SESSION["email"], '_id' => $_POST['id'], 'company_name' => $_POST["company"],
+        'position' => $_POST["position"], 'fieldofwork' => $_POST["fieldofwork"]));
+    $res=1;
+}
+catch(Exception $e) {
+    echo "งานนี้ได้ถูกเพิ่มเข้าไปแล้ว";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +74,19 @@ $result = $collection->insertOne(array('email'=>"beam@hot.com",'_id' => $_POST['
                 <br>
                 <div class="col-lg-12">
                     <br>
-                    <h3 align="center" >เพิ่มข้อมูลสำเร็จ</h3><br>
-                    <center><a href="save.php"><button class='btn btn-lg btn-info'>ดูงานที่บันทึก</button></a></center>
+                    <?php
+                    if ($res == 1) {
+                        ?>
+                        <h3>เพิ่มข้อมูลสำเร็จ!</h3>
+                        <center><a href="save.php"><button class='btn btn-lg btn-info'>ดูงานที่บันทึก</button></a></center>
+                        <?php
+                    } else {
+                        ?>
+                        <h3>เพิ่มข้อมูลไม่สำเร็จ<br>งานนี้ได้ถูกเพิ่มเข้าไปแล้ว</h3>
+                        <center><a href="search.php"><button class='btn btn-lg btn-info'>กลับไปสู่หน้าค้นหางาน</button></a></center>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
