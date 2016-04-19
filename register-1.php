@@ -1,5 +1,6 @@
 <?php
-session_start(); error_reporting(0);
+session_start();
+error_reporting(0);
 
 if (!isset($_SESSION["register"])) {
     $_SESSION["register"] = array();
@@ -17,32 +18,44 @@ $address = (!$_SESSION["register"]["address"]) ? "" : $_SESSION["register"]["add
 $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["province"];
 
 ?>
+
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <style>
+        .invalid {
+            color: red;
+            font-weight: normal;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <title>Untitled Document</title>
-    <script src="js/jquery.js"></script>
+    <!--<script src="js/jquery.js"></script>-->
     <script>
-        function emailcheck(source){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    if(xhttp.responseText == '0'){
-                        $('#emailcan').html("");
-                        $('#form1submit').prop('disabled', false);
+        function emailcheck(source) {
+            if (!source.disabled) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        if (xhttp.responseText == '0') {
+                            $('#emailcan').html("");
+                            $('#form1submit').prop('disabled', false);
 
-                    } else {
-                        $('#emailcan').html("อีเมล์นี้ลงทะเบียนแล้ว");
-                        $('#form1submit').prop('disabled', true);
+                        } else {
+                            $('#emailcan').html("อีเมล์นี้ลงทะเบียนแล้ว");
+                            $('#form1submit').prop('disabled', true);
+                        }
                     }
-                }
-            };
-            var param = {"email":source.value};
-            xhttp.open("GET", "emailcheck.php?" +  $.param(param) , true);
+                };
+                var param = {"email": source.value};
+                xhttp.open("GET", "emailcheck.php?" + $.param(param), true);
                 xhttp.send();
+            }
         }
     </script>
 </head>
@@ -70,113 +83,88 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
         <form name="registerform1" id="registerform1" method="post" action="register-2.php">
             <div>
                 คำนำหน้าชื่อ :
-                <select name="name_title" form="registerform1" selected="<?= $name_title ?>"
-                        data-validation="required" data-validation-error-msg="กรุณาเลือกคำนำหน้าชื่อ">
+                <select name="name_title" form="registerform1" selected="<?= $name_title ?>">
                     <option value="null" <?= !$name_title ? "selected disabled" : "disabled" ?>>เลือกคำนำหน้าชื่อ
                     </option>
                     <option value="Mr" <?= $name_title == "Mr" ? "selected" : "" ?>>นาย</option>
                     <option value="Ms" <?= $name_title == "Ms" ? "selected" : "" ?>>นางสาว</option>
                     <option value="Mrs" <?= $name_title == "Mrs" ? "selected" : "" ?>>นาง</option>
                 </select>
-
-
                 <br></div>
             <br>
 
 
             <div>
-                ชื่อ : <input name="name" type="text" value="<?= $name ?>" required minlength="2" >
-                              <!-- data-validation-error-msg="กรุณากรอกชื่อ"-->
-
-
+                ชื่อ : <input name="name" type="text" value="<?= $name ?>">
                 <br></div>
             <br>
 
 
             <div>
-                นามสกุล : <input name="surname" type="text" value="<?= $surname ?>" required minlength="2" >
-                                <!--data-validation="required" data-validation-error-msg="กรุณากรอกนามสกุล">-->
-
+                นามสกุล : <input name="surname" type="text" value="<?= $surname ?>">
                 <br></div>
             <br>
 
 
             <div>
                 อีเมล์ :
-                <input name="email" type="email" value="<?= $email ?>" data-validation="email required"
-                                data-validation-error-msg="กรุณากรอกอีเมล์" placeholder="wansiri@example.com"
-                       onblur="emailcheck(this)"
-                <?= (isset($_SESSION['authentication']) ? "disabled readonly" : "") ?>>
-                <span id="emailcan" class="text-danger"> </span>
-
+                <input name="email" id="email" type="email" value="<?= $email ?>" placeholder="wansiri@example.com"
+                    <?= (isset($_SESSION['authentication']) ? "disabled readonly" : "") ?>>
                 <br></div>
             <br>
 
 
             <div>
-                รหัสผ่าน : <input name="password" type="password" value="<?= $password ?>" required minlength="4" >
-                                <!--  data-validation="length required"
-                                  data-validation-error-msg="กรุณาใส่อย่างน้อย 6 ตัวอักษร"
-                                  data-validation-length="6-50">-->
-
+                รหัสผ่าน : <input id="password" name="password" type="password" value="<?= $password ?>">
                 <br></div>
             <br>
 
 
             <div>
-                ยืนยันรหัสผ่าน : <input name="password_confirmation" type="password" value="<?= $password ?>" required minlength="4" >
-                                      <!--  data-validation-error-msg="รหัสผ่านไม่ตรงกัน"
-                                        data-validation="confirmation"> -->
-
+                ยืนยันรหัสผ่าน : <input name="password_confirmation" type="password" value="<?= $password ?>">
                 <br></div>
             <br>
 
 
             <div>
-                วัน/เดือน/ปีเกิด : <input name="birthday" type="date" value="<?= $birthday ?>" required>
-                                        <!-- data-validation="required date" data-validation-format="dd/mm/yyyy"
-                                          data-validation-error-msg="กรุณากรอกวัน/เดือน/ปีเกิด"
-                                          placeholder="dd/mm/yyyy">-->
+                วัน/เดือน/ปีเกิด :
+                <div style="width:200px" class='input-group date' id='datetimepicker5'>
+                    <input type='text' class="form-control" name="birthday"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
 
-                <br></div>
+            </div>
             <br>
 
             <div>
-                เลขบัตรประจำตัวประชาชน : <input name="personalnumber" type="text" value="<?= $personalnumber ?>" required>
-                                          <!--      data-validation="required number length"
-                                                data-validation-length="13"
-                                                data-validation-error-msg="กรุณากรอกเลขประจำตัวประชาชน"> -->
-
+                เลขบัตรประจำตัวประชาชน : <input name="personalnumber" type="text" value="<?= $personalnumber ?>">
                 <br></div>
             <br>
 
 
             <div>
-                เบอร์โทร : <input name="tel" type="tel" value="<?= $tel ?>" required>
-                               <!--   data-validation="required length number" data-validation-length="9-10"
-                                  data-validation-error-msg="กรุณากรอกเบอร์โทรศัพท์"> -->
-
+                เบอร์โทร : <input name="tel" type="tel" value="<?= $tel ?>">
                 <br></div>
             <br>
 
 
             <div>
                 ที่อยู่ : <input name="address" type="text" value="<?= $address ?>">
-
                 <br></div>
             <br>
 
 
             <div>
                 จังหวัด : <input name="province" type="text" value="<?= $province ?>">
-
                 <br></div>
             <br>
             <br>
 
 
             <!--<a href="save-1.php"><button type="submit">ถัดไป</button></a>-->
-            <input id="form1submit" form="registerform1" value="ถัดไป" type="submit" disabled="true">
+            <input id="form1submit" form="registerform1" value="ถัดไป" type="submit">
 
 
         </form>
@@ -189,53 +177,89 @@ $province = (!$_SESSION["register"]["province"]) ? "" : $_SESSION["register"]["p
     $.validate();
 </script>
 -->
+<script
+    src="https://code.jquery.com/jquery-2.2.3.min.js"
+    integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+    crossorigin="anonymous"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
 <script>
-    //$.validate();
+    d = new Date();
+    d.setFullYear(d.getFullYear() + 543);
+    $(function () {
+
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: d,
+            maxDate: d,
+            format: 'DD/MM/YYYY'
+        });
+    });
     $('form').validate({
-        rules : {
-            title_name : "required",
-            name : "required",
-            surname : "required",
-            email : {
+        errorClass: "invalid",
+        rules: {
+            name_title: "required",
+            name: "required",
+            surname: "required",
+            email: {
                 required: true,
-                email: true
+                email: true,
+                remote: {
+                    url: "emailcheck.php",
+                    type: "get",
+                    data: {
+                        email: function () {
+                            return $("#email").val();
+                        }
+                    }
+                }
             },
             password: {
                 required: true,
+                minlength: 4
             },
             password_confirmation: {
                 required: true,
                 equalTo: "#password"
             },
             birthday: "required",
-            personalnumber: "required",
-            tel: "required"
+            personalnumber: {
+                required: true,
+                minlength: 13,
+                maxlength: 13,
+                number: true
+            },
+            tel: {
+                required: true,
+                minlength: 9,
+                maxlength: 12,
+                number: true
+            }
         },
-        messages : {
-            name : " กรุณากรอกชื่อของท่าน",
-            surname : " กรุณากรอกนามสกุลของท่าน",
+        messages: {
+            name_title: "กรุณาเลือกคำนำหน้าชื่อ",
+            name: " กรุณากรอกชื่อของท่าน",
+            surname: " กรุณากรอกนามสกุลของท่าน",
             email: {
-                required: " กรุณากรอกอีเมล์ของท่าน"
-                //minlength: "Please enter a valid email address",
-                //remote: jQuery.validator.format("{0} is already in use")
+                required: " กรุณากรอกอีเมล์ของท่าน",
+                email: " กรุณากรอกอีเมล์ให้ถูกต้อง",
+                remote: jQuery.validator.format(" {0} เคยลงทะเบียนแล้ว")
             },
             password: {
-                required: " กรุณากรอกรหัสผ่าน อย่างน้อย 4 ตัวอักษร"
-                //minlength: jQuery.validator.format("Enter at least {0} characters")
+                required: " กรุณากรอกรหัสผ่าน",
+                minlength: jQuery.validator.format("กรุณากรอกรหัสผ่าน อย่างน้อย {0} ตัวอักษร")
             },
             password_confirmation: {
                 required: " กรุณากรอกรหัสผ่านอีกครั้ง",
-                //minlength: jQuery.validator.format("Enter at least {0} characters"),
                 equalTo: " รหัสผ่านไม่ตรงกัน"
             },
             birthday: " กรุณากรอกวันเกิดของท่าน",
-            personalnumber: " กรุณากรอกเลขประจำตัวประชาชน",
+            personalnumber: " กรุณากรอกเลขประจำตัวประชาชน 13 หลัก",
             tel: " กรุณากรอกเบอร์ติดต่อ"
-        },
-        errorPlacement: function(error, element){
-            if (element.is(':'))
         }
+       
     });
 </script>
 

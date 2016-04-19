@@ -2,7 +2,7 @@
 // This
 session_start();
 error_reporting(0);
-
+require 'register_update.php';
 if (!$_SESSION["register"]) {
     $_SESSION["register"] = array();
 }
@@ -17,9 +17,18 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <style>
+        .invalid {
+            color: red;
+            font-weight: normal;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <title>Untitled Document</title>
     <script src="js/jquery.js"></script>
@@ -86,16 +95,24 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
                 <br>
 
                 <div>
-                    ระยะเวลาที่ทำงาน : &nbsp;&nbsp;&nbsp; เริ่มต้น <input name="start_worked" type="date"
-                                                                          value="<?= $start_worked ?>"
-                                                                          data-validation-format="dd/mm/yyyy"
-                                                                          placeholder="dd/mm/yyyy">
+                    ระยะเวลาที่ทำงาน : &nbsp;&nbsp;&nbsp; เริ่มต้น
+                    <div class='input-group date' id='datetimepicker6'>
+                        <input type='text' class="form-control" name="start_worked"
+                               value="<?= $start_worked ?>"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
                     <!-- data-validation="date" -->
 
                     &nbsp;&nbsp;&nbsp;สิ้นสุด
-                    <input name="stop_worked" type="date" value="<?= $stop_worked ?>"
-                           data-validation-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
-                    <!-- data-validation="date" -->
+                    <div class='input-group date' id='datetimepicker7'>
+                        <input class="form-control" name="stop_worked" type="text"
+                               value="<?= $stop_worked ?>"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
                     <br></div>
                 <br>
                 <br>
@@ -108,10 +125,102 @@ $stop_worked = (!$_SESSION["register"]["stop_worked"]) ? "" : $_SESSION["registe
         </form>
     </div>
 </div>
+<script
+    src="https://code.jquery.com/jquery-2.2.3.min.js"
+    integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+    crossorigin="anonymous"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 <script>
-    $.validate();
+    d = new Date();
+    d.setFullYear(d.getFullYear() + 543);
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+            defaultDate: d,
+            maxDate: d,
+            format: 'DD/MM/YYYY'
+        });
+        $('#datetimepicker7').datetimepicker({
+            defaultDate: d,
+            maxDate: d,
+            format: 'DD/MM/YYYY',
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+    $('form').validate({
+        errorClass: "invalid",
+        rules: {
+            name_title: "required",
+            name: "required",
+            surname: "required",
+            email: {
+                required: true,
+                email: true,
+                remote: {
+                    url: "emailcheck.php",
+                    type: "get",
+                    data: {
+                        email: function () {
+                            return $("#email").val();
+                        }
+                    }
+                }
+            },
+            password: {
+                required: true,
+                minlength: 4
+            },
+            password_confirmation: {
+                required: true,
+                equalTo: "#password"
+            },
+            birthday: "required",
+            personalnumber: {
+                required: true,
+                minlength: 13,
+                maxlength: 13,
+                number: true
+            },
+            tel: {
+                required: true,
+                minlength: 9,
+                maxlength: 12,
+                number: true
+            }
+        },
+        messages: {
+            name_title: "กรุณาเลือกคำนำหน้าชื่อ",
+            name: " กรุณากรอกชื่อของท่าน",
+            surname: " กรุณากรอกนามสกุลของท่าน",
+            email: {
+                required: " กรุณากรอกอีเมล์ของท่าน",
+                email: " กรุณากรอกอีเมล์ให้ถูกต้อง",
+                remote: jQuery.validator.format(" {0} เคยลงทะเบียนแล้ว")
+            },
+            password: {
+                required: " กรุณากรอกรหัสผ่าน",
+                minlength: jQuery.validator.format("กรุณากรอกรหัสผ่าน อย่างน้อย {0} ตัวอักษร")
+            },
+            password_confirmation: {
+                required: " กรุณากรอกรหัสผ่านอีกครั้ง",
+                equalTo: " รหัสผ่านไม่ตรงกัน"
+            },
+            birthday: " กรุณากรอกวันเกิดของท่าน",
+            personalnumber: " กรุณากรอกเลขประจำตัวประชาชน 13 หลัก",
+            tel: " กรุณากรอกเบอร์ติดต่อ"
+        }
+    });
 </script>
+
 
 </body>
 </html>

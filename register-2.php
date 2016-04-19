@@ -3,6 +3,8 @@
 session_start();
 error_reporting(0);
 
+require 'register_update.php';
+
 if (!$_SESSION["register"]) {
     $_SESSION["register"] = array();
 }
@@ -22,9 +24,16 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <style>
+        .invalid{
+            color: red;
+            font-weight: normal;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Untitled Document</title>
 </head>
@@ -60,9 +69,7 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
             <br><br>
 
             <div>
-                ระดับการศึกษา : <select name="edu_level" form="registerform2" selected="<?= $edu_level ?>"
-                                        data-validation="required"
-                                        data-validation-error-msg="กรุณาเลือกระดับการศึกษา">
+                ระดับการศึกษา : <select name="edu_level" form="registerform2" selected="<?= $edu_level ?>">
                     <option value="null" <?= !$edu_level ? "selected disabled" : "disabled" ?>>เลือกระดับการศึกษา
                     </option>
                     <option value="writeread" <?= $edu_level == "writeread" ? "selected" : "" ?>>อ่านออกเขียนได้
@@ -90,8 +97,7 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
             <br>
 
             <div>
-                ประเทศที่จบ : <input name="country_grad" type="text" value="<?= $country_grad ?>"
-                                     data-validation="country">
+                ประเทศที่จบ : <input name="country_grad" type="text" value="<?= $country_grad ?>">
                 <br></div>
             <br>
 
@@ -111,17 +117,18 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
             <br>
 
             <div>
-                ปีพ.ศ.ที่จบการศึกษา : <input name="year_grad" type="text" value="<?= $year_grad ?>"
-                                             data-validation="required number length"
-                                             data-validation-length="4" placeholder="2511"
-                                             data-validation-error-msg="กรุณากรอกปีที่จบ">
-                <br></div>
+                ปีพ.ศ.ที่จบการศึกษา :
+                <span style="width:140px" class='input-group date' id='datetimepicker5'>
+                    <input type='text' class="form-control" name="year_grad" value="<?=$year_grad?>"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </span>
+                </div>
             <br>
 
             <div>
-                คะแนนเฉลี่ย(GPA) : <input name="GPA" type="text" value="<?= $GPA ?>"
-                                          data-validation="number" data-validation-allowing="float"
-                                          placeholder="4.00" data-validation-error-msg="กรุณากรอกเกรดเฉลี่ย">
+                คะแนนเฉลี่ย(GPA) : <input name="GPA" type="text" value="<?= $GPA ?>">
                 <br></div>
             <br>
 
@@ -150,11 +157,46 @@ $experience = (!$_SESSION["register"]["experience"]) ? "" : $_SESSION["register"
     </div>
 </div>
 
+<script
+    src="https://code.jquery.com/jquery-2.2.3.min.js"
+    integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+    crossorigin="anonymous"></script>
 
-<script src="js/jquery.js"></script>
-<script src="js/jquery.form-validator.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script>
-    $.validate();
+    d = new Date();
+    d.setFullYear(d.getFullYear() + 543);
+    $(function () {
+
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: d,
+            maxDate: d,
+            format: 'YYYY'
+        });
+    });
+    $('form').validate({
+        errorClass: "invalid",
+        rules: {
+            edu_level: "required",
+            year_grad: {
+                number: true,
+                minlength: 4,
+                maxlength: 4
+            },
+            GPA: {
+                float: true,
+                maxlength: 4
+            }
+        },
+        messages: {
+            edu_level: "กรุณาเลือกคำนำหน้าชื่อ",
+            year_grad: "กรอกปีการศึกษาไม่ถูกต้อง",
+            GPA: "กรอกเกรดไม่ถูกต้อง"
+        }
+
+    });
 </script>
 
 </body>

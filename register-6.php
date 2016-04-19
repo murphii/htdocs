@@ -2,10 +2,13 @@
 // This
 session_start();
 error_reporting(0);
+require 'register_update.php';
 
 if (!$_SESSION["register"]) {
     $_SESSION["register"] = array();
 }
+
+$loginalready = isset($_SESSION['authentication']) ? true : false;
 
 ?>
 

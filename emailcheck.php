@@ -14,9 +14,9 @@ $col = $db->mydb->disable_people;
 $result = $col->findOne(['email' => $_GET['email']]);
 
 if (empty($result)){
-    echo "0";
+    echo "true";
 } else {
-    echo "1";
+    echo "false";
 }
 
 
